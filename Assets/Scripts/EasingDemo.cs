@@ -9,53 +9,63 @@ using System.Collections.Generic;
 namespace OhanaYa.Demo
 {
     using Easing;
-    using EasingFunction = System.Func<float, float, float, float>;
+    using EasingFunction = System.Func<float, float>;
 
     public sealed class EasingDemo : MonoBehaviour
     {
         static readonly Dictionary<string, EasingFunction> Functions = new Dictionary<string, EasingFunction>
             {
-                {"Liner", Mathf.Lerp},
+                {"Liner", Linear.Evaluate},
 
                 {"Sinusoidal-In", Sinusoidal.In},
                 {"Sinusoidal-Out", Sinusoidal.Out},
                 {"Sinusoidal-InOut", Sinusoidal.InOut},
+                {"Sinusoidal-OutIn", Sinusoidal.OutIn},
 
                 {"Quadratic-In", Quadratic.In},
                 {"Quadratic-Out", Quadratic.Out},
                 {"Quadratic-InOut", Quadratic.InOut},
+                {"Quadratic-OutIn", Quadratic.OutIn},
 
-                {"Qubic-In", Qubic.In},
-                {"Qubic-Out", Qubic.Out},
-                {"Qubic-InOut", Qubic.InOut},
+                {"Cubic-In", Cubic.In},
+                {"Cubic-Out", Cubic.Out},
+                {"Cubic-InOut", Cubic.InOut},
+                {"Cubic-OutIn", Cubic.OutIn},
 
                 {"Quartic-In", Quartic.In},
                 {"Quartic-Out", Quartic.Out},
                 {"Quartic-InOut", Quartic.InOut},
+                {"Quartic-OutIn", Quartic.OutIn},
 
                 {"Quintic-In", Quintic.In},
                 {"Quintic-Out", Quintic.Out},
                 {"Quintic-InOut", Quintic.InOut},
+                {"Quintic-OutIn", Quintic.OutIn},
 
                 {"Exponential-In", Exponential.In},
                 {"Exponential-Out", Exponential.Out},
                 {"Exponential-InOut", Exponential.InOut},
+                {"Exponential-OutIn", Exponential.OutIn},
 
                 {"Circular-In", Circular.In},
                 {"Circular-Out", Circular.Out},
                 {"Circular-InOut", Circular.InOut},
+                {"Circular-OutIn", Circular.OutIn},
 
                 {"Back-In", Back.In},
                 {"Back-Out", Back.Out},
                 {"Back-InOut", Back.InOut},
+                {"Back-OutIn", Back.OutIn},
 
                 {"Elastic-In", Elastic.In},
                 {"Elastic-Out", Elastic.Out},
                 {"Elastic-InOut", Elastic.InOut},
+                {"Elastic-OutIn", Elastic.OutIn},
 
                 {"Bounce-In", Bounce.In},
                 {"Bounce-Out", Bounce.Out},
                 {"Bounce-InOut", Bounce.InOut},
+                {"Bounce-OutIn", Bounce.OutIn},
             };
 
         static readonly Color[] Colors = new Color[]
@@ -159,7 +169,7 @@ namespace OhanaYa.Demo
             var maxY = 720 - minY - size.y;
 
             var fromPosition = new Vector2(size.x * index, rectTransform.anchoredPosition.y);
-            var toY = easingFunction(minY, maxY, d);
+            var toY = Mathf.LerpUnclamped(minY, maxY, easingFunction(d));
 
             var fromColor = target.color;
             var toColor = Color.Lerp(baseFromColor, baseToColor, d);
@@ -168,7 +178,7 @@ namespace OhanaYa.Demo
             while (true)
             {
                 var amount = Mathf.Clamp01((Time.time - startTime) / Duration);
-                var y = easingFunction(fromPosition.y, toY, amount);
+                var y = Mathf.LerpUnclamped(fromPosition.y, toY, easingFunction(amount));
 
                 rectTransform.anchoredPosition = new Vector2(fromPosition.x, y);
 
