@@ -15,7 +15,7 @@ namespace OhanaYa.Demo
     {
         static readonly Dictionary<string, EasingFunction> Functions = new Dictionary<string, EasingFunction>
             {
-                {"Liner", Linear.Evaluate},
+                {"Linear", Linear.Evaluate},
 
                 {"Sinusoidal-In", Sinusoidal.In},
                 {"Sinusoidal-Out", Sinusoidal.Out},
