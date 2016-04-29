@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace OhanaYa.Demo
 {
-    using Easing;
+    using Easings;
     using EasingFunction = System.Func<float, float>;
 
     public sealed class EasingDemo : MonoBehaviour

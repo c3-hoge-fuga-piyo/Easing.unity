@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace OhanaYa.Easing
+namespace OhanaYa.Easings
 {
     public static class Back
     {

@@ -1,4 +1,4 @@
-﻿namespace OhanaYa.Easing
+﻿namespace OhanaYa.Easings
 {
     public static class Linear
     {
