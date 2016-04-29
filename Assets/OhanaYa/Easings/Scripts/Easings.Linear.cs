@@ -2,7 +2,7 @@
 {
     public static class Linear
     {
-        public static float Evaluate(float t)
+        public static float Identity(float t)
         {
             return t;
         }
